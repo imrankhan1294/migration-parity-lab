@@ -1,0 +1,5 @@
+tenant_id,widget_id,label,quota,legacy_tag
+lab-west,01,comet,10,v1
+lab-west,02,orbit,,v1
+lab-east,01,aurora,9,v1
+lab-east,03,meteor,8,v1

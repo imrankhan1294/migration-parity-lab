@@ -1,0 +1,6 @@
+tenant_id,widget_id,label,quota
+lab-west,01,comet,10
+lab-west,02,orbit,0
+lab-east,01,aurora,9
+lab-east,01,aurora-retry,9
+lab-south,04,quasar,4
