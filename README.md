@@ -47,3 +47,7 @@ python3 baselines.py
 ```
 
 On the fixed synthetic test split (180 cases), row counts alone miss 108 of 126 defects. A raw exact diff flags 36 of 54 benign cases. A full-information, contract-aware comparison makes no errors on these constructed fixtures; this is a sanity check, not evidence of production accuracy. The benchmark is separate from the CSV agent and includes schema and grant fixtures the CSV agent does not inspect. See [evaluation notes](EVALUATION.md) for the next experiment: calibrated ML triage versus a threshold baseline at the same sampling budget.
+
+## Budgeted inspection experiment
+
+`python3 budget_policy.py --groups 500 --budget 2` compares learned tool choice with fixed, random and heuristic baselines at the same synthetic inspection budget. The learned policy ties the simple heuristic on the held-out set and both lose recall badly under a routing shift. See [methods, results and limitations](BUDGETED_INSPECTION.md). The experiment never reports that a cutover is safe.
