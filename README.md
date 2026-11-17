@@ -51,3 +51,7 @@ On the fixed synthetic test split (180 cases), row counts alone miss 108 of 126 
 ## Budgeted inspection experiment
 
 `python3 budget_policy.py --groups 500 --budget 2` compares learned tool choice with fixed, random and heuristic baselines at the same synthetic inspection budget. The learned policy ties the simple heuristic on the held-out set and both lose recall badly under a routing shift. See [methods, results and limitations](BUDGETED_INSPECTION.md). The experiment never reports that a cutover is safe.
+
+## Which routing policy survives a distribution shift?
+
+`python3 routing_shift.py` compares all ten fixed tool pairs, adaptive routes and a direct-first hybrid under the same two-tool budget. In two synthetic routing-shift sets, a calibration-selected direct pair caught more defects than the learned router, at the cost of more false alarms. The hybrid did not improve detection. See [routing-shift results and reproduction instructions](ROUTING_SHIFT.md).
