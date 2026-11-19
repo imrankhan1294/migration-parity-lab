@@ -55,3 +55,28 @@ On the fixed synthetic test split (180 cases), row counts alone miss 108 of 126 
 ## Which routing policy survives a distribution shift?
 
 `python3 routing_shift.py` compares all ten fixed tool pairs, adaptive routes and a direct-first hybrid under the same two-tool budget. In two synthetic routing-shift sets, a calibration-selected direct pair caught more defects than the learned router, at the cost of more false alarms. The hybrid did not improve detection. See [routing-shift results and reproduction instructions](ROUTING_SHIFT.md).
+
+## Does robust routing hold up when retrained?
+
+Run the synthetic experiment and its checks:
+
+```sh
+python3 repeated_robust_routing.py --self-test
+python3 repeated_robust_routing.py > repeated-robust-report.json
+```
+
+Twenty independent repetitions each refit the model, select among the same 14
+policies, and evaluate on fresh held-out groups in three regimes. Both selectors
+get exactly two inspections per case and use the same miss-to-false-alarm cost
+ratio of 5:1. The source-only selector applies the 20% false-positive cap on
+source calibration only; minimax applies it across all three calibration regimes.
+
+On the noisy shift, average test false positives fell from 24.2% to 18.4% with
+minimax selection, but recall also fell from 42.0% to 37.0%. Minimax still missed
+the false-positive target in 8 of 20 runs (source-only: 10 of 20). Minimax had
+higher mean weighted loss in all three regimes; paired bootstrap intervals for
+the mean loss difference exclude zero only on the source regime, not on either
+shift. These are comparisons at the same inspection budget, not at matched
+realized false-positive rates. The JSON separates repeat-to-repeat spread from
+uncertainty in the mean, and statistical alerts from operational evidence holds.
+It never treats incomplete evidence as a go decision.
