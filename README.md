@@ -80,3 +80,13 @@ shift. These are comparisons at the same inspection budget, not at matched
 realized false-positive rates. The JSON separates repeat-to-repeat spread from
 uncertainty in the mean, and statistical alerts from operational evidence holds.
 It never treats incomplete evidence as a go decision.
+
+## What if both selectors share a warning budget?
+
+`python3 matched_alert_frontier.py` compares source-loss and minimax selection
+under the same calibration warning-rate cap in all three synthetic regimes,
+sweeping eight caps without consulting held-out cases. At a 20% cap minimax
+increased recall under both shifts but lowered source recall; in noisy shift it
+also exceeded the warning cap more often. See the
+[matched frontier methods, results and limits](MATCHED_ALERT_FRONTIER.md).
+Score warnings never override evidence holds or turn abstention into approval.
