@@ -90,3 +90,11 @@ increased recall under both shifts but lowered source recall; in noisy shift it
 also exceeded the warning cap more often. See the
 [matched frontier methods, results and limits](MATCHED_ALERT_FRONTIER.md).
 Score warnings never override evidence holds or turn abstention into approval.
+
+## What if we budget the whole review queue?
+
+The [review-queue frontier](REVIEW_QUEUE_FRONTIER.md) counts each case once
+when either evidence triggers a hold or the model warns. At a 30% synthetic
+calibration cap, every refit had a feasible fixed pair; the conservative hybrid
+had none because evidence holds alone exceeded the cap. Unqueued cases still
+abstain. Reproduce with `python3 review_queue_frontier.py`.
