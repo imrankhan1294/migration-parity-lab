@@ -98,3 +98,11 @@ when either evidence triggers a hold or the model warns. At a 30% synthetic
 calibration cap, every refit had a feasible fixed pair; the conservative hybrid
 had none because evidence holds alone exceeded the cap. Unqueued cases still
 abstain. Reproduce with `python3 review_queue_frontier.py`.
+
+## When global totals hide PostgreSQL drift
+
+The [Pagila parity demo](PAGILA_PARITY.md) uses a pinned public PostgreSQL
+fixture and a disposable local cluster. Moving $2 between two stores left
+the grand total and all row counts unchanged, but the store/day check
+caught both discrepancies. The demo withholds a parity conclusion when
+the shared comparison boundary is unknown.
